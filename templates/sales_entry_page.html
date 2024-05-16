@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block breadcrumb %} 
+<h5 class="text-primary mb-0" style="font-weight: bold;">Sales Entry</h5> 
+{% endblock breadcrumb %} 
+{% block content %} 
+{% for message in messages %} 
+<p class="text-danger text-center" id="messages">{{message}}</p> 
+{% endfor %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <h2 class="text-center mb-4">Product Details</h2>
+      <form method="post" id="sales_data_form_id" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="productName">Product Name</label>
+          <input type="text" class="form-control" id="productName" placeholder="Enter product name" required name="product_name">
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" placeholder="Enter price" required name="product_price">
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <select class="form-control" name="product_quantity" id="" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="payment_type">Payment Type</label>
+          <select class="form-control" name="payment_type" id="" required>
+            <option value="Cash">Cash</option>
+            <option value="Online">Online</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="productImage">Product Image</label>
+            <input type="file" class="form-control-file" id="productImage" accept="image/*" name="product_image">
+        </div>
+        <input type="hidden" name="save_new_sales_data" id="">
+        <button type="button" class="btn btn-primary btn-block" id="sales_data_form_save_btn_id">Submit</button>
+      </form>
+    </div>
+</div>
+<script>
+    document.getElementById("sales_data_form_save_btn_id").addEventListener("click", function (event) {
+        event.preventDefault();  // prevent default form submission behavior
+
+        // validate required fields
+        var form = document.getElementById("sales_data_form_id");
+        var requiredFields = form.querySelectorAll("[required]");
+        var isValid = true;
+        requiredFields.forEach(function (field) {
+            if (!field.value) {
+                field.classList.add("is-invalid");
+                isValid = false;
+            } else {
+                field.classList.remove("is-invalid");
+            }
+        });
+
+        // submit form if validation passes
+        if (isValid) {
+            document.getElementById('sales_data_form_save_btn_id').disabled = true;
+            document.getElementById('sales_data_form_save_btn_id').innerHTML = 'Please wait...'
+            form.submit();
+        }
+    });
+</script>
+
+{% endblock %}
