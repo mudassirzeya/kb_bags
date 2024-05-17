@@ -1,17 +1,12 @@
 {
   "name": "Kamal Bags",
-  "short_name": "KB",
+  "short_name": "KamalBags",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF",
   "orientation": "portrait-primary",
   "icons": [
-    {
-      "src": "/static/img/icons/icon-48x48.png",
-      "type": "image/png",
-      "sizes": "48x48"
-    },
     {
       "src": "/static/img/icons/icon-72x72.png",
       "type": "image/png",
