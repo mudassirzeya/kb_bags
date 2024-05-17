@@ -1,12 +1,17 @@
 {
-  "name": "Aalim App",
-  "short_name": "Aalim",
+  "name": "Kamal Bags",
+  "short_name": "KB",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF",
   "orientation": "portrait-primary",
   "icons": [
+    {
+      "src": "/static/img/icons/icon-48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
     {
       "src": "/static/img/icons/icon-72x72.png",
       "type": "image/png",
@@ -18,29 +23,14 @@
       "sizes": "96x96"
     },
     {
-      "src": "/static/img/icons/icon-128x128.png",
-      "type": "image/png",
-      "sizes": "128x128"
-    },
-    {
       "src": "/static/img/icons/icon-144x144.png",
       "type": "image/png",
       "sizes": "144x144"
     },
     {
-      "src": "/static/img/icons/icon-152x152.png",
-      "type": "image/png",
-      "sizes": "152x152"
-    },
-    {
       "src": "/static/img/icons/icon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "/static/img/icons/icon-384x384.png",
-      "type": "image/png",
-      "sizes": "384x384"
     },
     {
       "src": "/static/img/icons/icon-512x512.png",
