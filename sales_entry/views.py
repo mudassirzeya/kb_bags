@@ -37,6 +37,8 @@ def logout_user(request):
 def sales_entry_page(request):
     user = request.user
     staffProfile = UserProfile.objects.get(user=user)
+    if staffProfile.is_super_admin and not staffProfile.user.is_superuser:
+        return redirect('sales_report_page')
     if request.method == 'POST':
         if 'save_new_sales_data' in request.POST:
             product_name = request.POST.get('product_name')
