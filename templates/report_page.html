@@ -7,6 +7,7 @@
 {% for message in messages %} 
 <p class="text-danger text-center" id="messages">{{message}}</p>
 {% endfor %}
+{% if staffProfile.is_super_admin %}
 <form action="" method="get">
     <div class="row">
         <div class="col-5">
@@ -27,6 +28,7 @@
         </div>
     </div>
 </form>
+{% endif %}
 <div class="row justify-content-center">
     <strong class="text-danger">Total Sale: {{this_day_total_sale}} | Total Online: {{this_day_total_sale_in_online}} | Total Cash: {{this_day_total_sale_in_cash}}</strong>
 </div>
