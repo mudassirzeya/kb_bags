@@ -7,28 +7,26 @@
 {% for message in messages %} 
 <p class="text-danger text-center" id="messages">{{message}}</p>
 {% endfor %}
-{% if staffProfile.is_super_admin %}
-<form action="" method="get">
+<form action="" method="get" id="search_filter_form">
     <div class="row">
         <div class="col-5">
             <div class="form-group">
                 <label for="price">From Date</label>
-                <input type="date" class="form-control" name="from_selling_date" value="{{from_selling_date|default_if_none:''}}">
+                <input type="date" class="form-control" id="from_selling_date_id" name="from_selling_date" value="{{from_selling_date|default_if_none:''}}">
             </div>
         </div>
-        <div class="col-5">
+        <div class="col-5 {% if not staffProfile.is_super_admin %} d-none {% endif %}">
             <div class="form-group">
                 <label for="price">To Date</label>
-                <input type="date" class="form-control" name="to_selling_date" value="{{to_selling_date|default_if_none:''}}">
+                <input type="date" class="form-control" id="to_selling_date_id" name="to_selling_date" value="{{to_selling_date|default_if_none:''}}">
             </div>
         </div>
         <div class="col-2 mt-2">
             <br>
-            <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
+            <button type="button" class="btn btn-success" onclick="submit_search_form()"><i class="fas fa-search"></i></button>
         </div>
     </div>
 </form>
-{% endif %}
 <div class="row justify-content-center">
     <strong class="text-danger">Total Sale: {{this_day_total_sale}} | Total Online: {{this_day_total_sale_in_online}} | Total Cash: {{this_day_total_sale_in_cash}}</strong>
 </div>
@@ -70,7 +68,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-info" id="exampleModalLongTitle">Edit Audit Data </h5>
+                <h5 class="modal-title text-info" id="exampleModalLongTitle">Edit Sales Data </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -231,6 +229,26 @@
         document.getElementById('delete_sales_data_pk').value = sales_id;
         $('#deletesalesdatarmodal').modal('show');
 
+    }
+
+    function submit_search_form(){
+        const fromDateInput = document.getElementById('from_selling_date_id');
+        const toDateInput = document.getElementById('to_selling_date_id');
+        const form = document.getElementById('search_filter_form');
+
+        const fromDate = new Date(fromDateInput.value);
+        const toDate = new Date(toDateInput.value);
+
+        if (toDate < fromDate) {
+            toDateInput.value = fromDateInput.value;
+        }
+        const isStaff = {{ staffProfile.is_staff|lower }};
+        if(isStaff){
+            toDateInput.value = fromDateInput.value;
+        }
+
+        // Submit the form programmatically after validation
+        form.submit();
     }
 </script>
 
