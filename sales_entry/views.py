@@ -48,17 +48,17 @@ def sales_entry_page(request):
             product_price = request.POST.get('product_price')
             product_quantity = request.POST.get('product_quantity')
             payment_type = request.POST.get('payment_type')
-            if 'product_image' in request.FILES:
-                product_image = request.FILES["product_image"]
-            else:
-                product_image = None
+            # if 'product_image' in request.FILES:
+            #     product_image = request.FILES["product_image"]
+            # else:
+            #     product_image = None
             SalesEntryData.objects.create(
                 staff=staffProfile,
                 product_name=product_name,
                 product_quantity=product_quantity,
                 product_price=product_price,
                 payment_type=payment_type,
-                product_image=product_image
+                # product_image=product_image
             )
             messages.info(request, "Successfully Added!!")
         return redirect('sales_entry_page')
@@ -102,10 +102,10 @@ def sales_report_page(request):
         temp['total_price'] = int(
             each_data.product_price) * int(each_data.product_quantity)
         temp['payment_type'] = each_data.payment_type
-        try:
-            temp['image'] = each_data.product_image.url
-        except Exception:
-            temp['image'] = None
+        # try:
+        #     temp['image'] = each_data.product_image.url
+        # except Exception:
+        #     temp['image'] = None
         this_day_total_sale += temp['total_price']
         if temp['payment_type'] == 'Cash':
             this_day_total_sale_in_cash += temp['total_price']
@@ -119,10 +119,10 @@ def sales_report_page(request):
             product_price = request.POST.get('edit_product_price')
             product_quantity = request.POST.get('edit_product_quantity')
             payment_type = request.POST.get('edit_payment_type')
-            if 'edit_product_image' in request.FILES:
-                product_image = request.FILES["edit_product_image"]
-            else:
-                product_image = None
+            # if 'edit_product_image' in request.FILES:
+            #     product_image = request.FILES["edit_product_image"]
+            # else:
+            #     product_image = None
 
             try:
                 sales_data = SalesEntryData.objects.get(id=int(sales_data_id))
@@ -133,8 +133,8 @@ def sales_report_page(request):
                 sales_data.product_price = product_price
                 sales_data.product_quantity = product_quantity
                 sales_data.payment_type = payment_type
-                if product_image:
-                    sales_data.product_image = product_image
+                # if product_image:
+                #     sales_data.product_image = product_image
                 sales_data.save()
                 messages.info(request, "Successfully Edited!!")
         if 'delete_sales_data' in request.POST:

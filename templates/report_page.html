@@ -35,24 +35,24 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Product Name</th>
+                    <th scope="col" style="min-width: 118px;">Product Name</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Payment Method</th>
                     <th scope="col">Price</th>
                     <th scope="col">Total Price</th>
-                    <th scope="col">Image</th>
+                    <!-- <th scope="col">Image</th> -->
                     <th scope="col" colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
                 {% for each_sell in sales_data %}
                 <tr>
-                    <td>{{each_sell.product_name}}</td>
+                    <td style="white-space: normal;">{{each_sell.product_name}}</td>
                     <td>{{each_sell.quantity}}</td>
                     <td>{{each_sell.payment_type}}</td>
                     <td>{{each_sell.price}}</td>
                     <td>{{each_sell.total_price}}</td>
-                    <td><a href="{{each_sell.image}}" target="_blank"><img src="{{each_sell.image}}" alt="" height="50" width="50"></a></td>
+                    <!-- <td><a href="{{each_sell.image}}" target="_blank"><img src="{{each_sell.image}}" alt="" height="50" width="50"></a></td> -->
                     <td><button class="btn btn-link" onclick="edit_sales_data_popup('{{each_sell.id}}')"><i class="fas fa-edit"></i></button></td>
                     <td><button class="btn btn-link" onclick="delete_sales_data('{{each_sell.id}}')"><i class="fas fa-trash"></i></button></td>
                 </tr>
