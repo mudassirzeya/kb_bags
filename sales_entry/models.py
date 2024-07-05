@@ -32,7 +32,7 @@ class SalesEntryData(models.Model):
     product_price = models.CharField(max_length=250, null=True, blank=True)
     payment_type = models.CharField(max_length=250, null=True, blank=True)
     product_image = models.FileField(upload_to='media', null=True, blank=True)
-    added_date = models.DateField(auto_now_add=True, null=True, blank=True)
+    added_date = models.DateField(auto_now_add=False, null=True, blank=True)
     auto_added_time = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
 

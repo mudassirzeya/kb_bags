@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.core import serializers
 from datetime import datetime
+from datetime import date
 import json
 # Create your views here.
 
@@ -48,6 +49,7 @@ def sales_entry_page(request):
             product_price = request.POST.get('product_price')
             product_quantity = request.POST.get('product_quantity')
             payment_type = request.POST.get('payment_type')
+            today_date = date.today()
             # if 'product_image' in request.FILES:
             #     product_image = request.FILES["product_image"]
             # else:
@@ -58,6 +60,7 @@ def sales_entry_page(request):
                 product_quantity=product_quantity,
                 product_price=product_price,
                 payment_type=payment_type,
+                added_date=today_date
                 # product_image=product_image
             )
             messages.info(request, "Successfully Added!!")
